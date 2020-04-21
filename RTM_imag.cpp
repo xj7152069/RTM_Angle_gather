@@ -28,12 +28,12 @@ int main ()
    {
       cout<<s_id<<" : "<<endl;
       file1[0]='\0';
-      strcat(file1,"movie");
+      strcat(file1,"./data/movie");
       strcat(file1,numtostr(s_id,5));
       inf.open(file1);
 
       file5[0]='\0';
-      strcat(file5,"nsmovie");
+      strcat(file5,"./data/nsmovie");
       strcat(file5,numtostr(s_id,5));
       inf_ns.open(file5);
 
@@ -57,8 +57,8 @@ int main ()
             -imag(i,j)+imag(i+1,j-1)-imag(i,j)+imag(i+1,j+1)-imag(i,j));
          }
       }
-   datawrite(imag,Z,X,"imag.bin");
-   datawrite(imagla,Z,X,"imag2.bin");
+   datawrite(imag,Z,X,"./data/imag.bin");
+   datawrite(imagla,Z,X,"./data/imag2.bin");
 
    return 0;
 }

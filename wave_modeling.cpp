@@ -26,12 +26,12 @@ int main ()
         cout<<sx<<" : "<<endl;
 
         A.cleardata();
-        dataread(A.p2,Z,X,"model.dat");  
+        dataread(A.p2,Z,X,"./data/model.dat");  
         //dataread(m,Z,X,"model.dat");
         //matmul(m,0.000000001,Z,X); 
         //a=matcopy(m,Z,X);
         file1[0]='\0';
-        strcat(file1,"movie");
+        strcat(file1,"./data/movie");
         strcat(file1,numtostr(s_id,5));
         outf1.open(file1);
         for(k=0;k<T;k++)
@@ -48,7 +48,7 @@ int main ()
         outf1.close();
 
         file2[0]='\0';
-        strcat(file2,"suf");
+        strcat(file2,"./data/suf");
         strcat(file2,numtostr(s_id,5));
         datawrite(suf,T,X,file2);
 
@@ -67,24 +67,24 @@ int main ()
             }
 
         file3[0]='\0';
-        strcat(file3,"sufv");
+        strcat(file3,"./data/sufv");
         strcat(file3,numtostr(s_id,5));
         datawrite(suf,T,X,file3);
 
         A.cleardata();
         //wave2D B(Z,X);
-        dataread(A.p2,Z,X,"model.dat");  
+        dataread(A.p2,Z,X,"./data/model.dat");  
         dataread(suf_v,T,X,file3);
         dataread(ns,T,X,file2); 
         ns=ns-suf_v;
 
         file4[0]='\0';
-        strcat(file4,"nspy");
+        strcat(file4,"./data/nspy");
         strcat(file4,numtostr(s_id,5));
         datawrite(ns,T,X,file4);
 
         file5[0]='\0';
-        strcat(file5,"nsmovie");
+        strcat(file5,"./data/nsmovie");
         strcat(file5,numtostr(s_id,5));
         outf1.open(file5);
         for(k=0;k<T;k++)

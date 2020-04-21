@@ -52,10 +52,10 @@ int main ()
     ofstream out1,out2,out3;
     ifstream inf1;
 
-    inf1.open("movie0.000");
-    out1.open("vx.zy.bin");
-    out2.open("vz.zy.bin");
-    out3.open("wave.zy.bin");
+    inf1.open("./data/movie0.000");
+    out1.open("./data/vx.zy.of");
+    out2.open("./data/vz.zy.of");
+    out3.open("./data/wave.zy.of");
     
     for(k=1620;k<1625;k++)
     {
