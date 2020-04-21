@@ -46,7 +46,7 @@ int main ()
       as(0,i)=s[i];
       ash(0,i)=sh[i];
    }
-
+/*
    fmat ze2d(T,T);
    cx_fmat s2d(T,T),sfft2d(T,T);
    ze2d.fill(0.0);
@@ -114,8 +114,8 @@ int main ()
    sifft2d=ifft2(sfft2d,T,T);
    ze2d=real(sifft2d);
    datawrite(ze2d,T,T,"shifft2d.real.bin");
+*/
 
-/*
    fs.set_real(as);
    fs.set_imag(ze);
    sfft.row(0)=fft(fs.row(0),T);
@@ -141,7 +141,7 @@ int main ()
       outfs.write((char*)&da,sizeof(float));
    }
    outfsh.close(); 
-*/
+
 
    return 0;
 }

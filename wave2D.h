@@ -798,10 +798,11 @@ template<typename T1>
 float* hilbert1D(T1 *s, int n, float dt)
 {
     float *h, pi(3.1415926);
-    int i,j,z;
-    z=int(n/2);
-    h=new float[n];
-    for(i=0;i<n;i++)
+    int i,j,z,hn;
+    hn=3/dt;
+    z=int(hn/2);
+    h=new float[hn];
+    for(i=0;i<hn;i++)
     {
         if((i-z)!=0)
         {
@@ -814,11 +815,11 @@ float* hilbert1D(T1 *s, int n, float dt)
     }
 
     float *h2, *s2, *sh, *sh2;
-    s2=new float[2*n];
-    h2=new float[2*n];
-    sh=new float[2*n];
-    sh2=new float[2*n];
-    for(i=0;i<2*n;i++)
+    s2=new float[hn+n];
+    h2=new float[hn+n];
+    sh=new float[hn+n];
+    sh2=new float[hn+n];
+    for(i=0;i<hn+n;i++)
     {
         s2[i]=0.0;
         h2[i]=0.0;
@@ -827,11 +828,14 @@ float* hilbert1D(T1 *s, int n, float dt)
         if(i<n)
         {
             s2[i]=s[i];
+        }
+        if(i<hn)
+        {
             h2[i]=h[i];
         }
     }
 
-    for(i=0;i<2*n;i++)
+    for(i=0;i<hn+n;i++)
     {
         for(j=0;j<=i;j++)
         {
