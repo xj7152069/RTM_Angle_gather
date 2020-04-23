@@ -8,8 +8,7 @@
 #include <iostream>
 using namespace std;
 
-#include "wave2D.h"
-#include "my_armadillo.h"
+#include <xj.c++.h>
 
 int main ()
 {
@@ -47,6 +46,7 @@ int main ()
             }
         outf1.close();
 
+/*
         file2[0]='\0';
         strcat(file2,"./data/suf");
         strcat(file2,numtostr(s_id,5));
@@ -101,7 +101,7 @@ int main ()
         //B.~wave2D();
         sx=sx+ds;
     }
-
+*/
     return 0;
 }
 

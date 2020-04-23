@@ -8,16 +8,15 @@
 #include <iostream>
 using namespace std;
  
-#include "wave2D.h"
-#include "RTMangle2D.h"
+#include <xj.c++.h>
 
 int main ()
 {
-    int nz(200),nx(401),nt(2000),na(200);
+    int nz(200),nx(401),nt(2000),na(200),xfft(512),zfft(256);
     int i,j,k,n,N(25);
     float **vx,**vz,**swave,**rwave,**imag;
-    swave=newfmat(nz,nx);
-    rwave=newfmat(nz,nx);
+    swave=newfmat(zfft,xfft);
+    rwave=newfmat(zfft,xfft);
     imag=newfmat(nz,nx);
     vx=newfmat(nz,nx);
     vz=newfmat(nz,nx);
@@ -34,17 +33,17 @@ int main ()
     ofstream outfcig,outfimag;
     ofstream outstheta,outrtheta;
 
-    infs.open("./data/movie0.000");
-    infr.open("./data/nsmovie0.000");
-    outstheta.open("./data/thetaS.bin");
-    outrtheta.open("./data/thetaR.bin");
+    infs.open("./data/zy.movie.down.bin");
+    infr.open("./data/ns.movie.up.bin");
+    outstheta.open("./data/thetaS.down.bin");
+    outrtheta.open("./data/thetaR.up.bin");
     //out3.open("./data/wave.ns.pyt");
     
     for(k=0;k<2000;k++)
     {
-        infr.seekg(nz*nx*(2000-k-1)*sizeof(float), ios::beg);
-        dataread(rwave,nz,nx,infr);
-        dataread(swave,nz,nx,infs);
+        infr.seekg(zfft*xfft*(2000-k-1)*sizeof(float), ios::beg);
+        dataread(rwave,zfft,xfft,infr);
+        dataread(swave,zfft,xfft,infs);
         
         S.addtimeslicecal(swave);
         R.addtimeslicecal(rwave);
@@ -52,9 +51,13 @@ int main ()
         S.velocityCalculate();
         R.velocityCalculate();
 
-        test.theatcal_S(S.vz, S.vx);
-        test.theatcal_R(R.vz, R.vx);
-
+        matsmooth(vz,S.vz,nz,nx);
+        matsmooth(vx,S.vx,nz,nx);
+        test.theatcal_S(vz, vx);
+        matsmooth(vz,R.vz,nz,nx);
+        matsmooth(vx,R.vx,nz,nx);
+        test.theatcal_R(vz, vx);
+        
         datawrite(test.pr,nz,nx,outrtheta);
         datawrite(test.ps,nz,nx,outstheta);
 

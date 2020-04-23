@@ -8,8 +8,7 @@
 #include <iostream>
 using namespace std;
 using namespace arma;
-#include "wave2D.h"
-#include "my_armadillo.h"
+#include <xj.c++.h>
 
 template<typename T1>
 float* hilbert1D(T1 *s, int n, float dt);
@@ -17,7 +16,7 @@ float* hilbert1D(T1 *s, int n, float dt);
 int main ()
 {
    float dt(0.0005),da;
-   int i,j, T(512);
+   int i,j, T(2000);
    float *s, *sh;
    s=new float[int(T)];
    wavelet01(s, T, dt);
